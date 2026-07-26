@@ -1,7 +1,7 @@
 name: Build APK
 
 on:
-  workflow_dispatch:  # 允许手动触发（你在网页上点按钮）
+  workflow_dispatch:
   push:
     branches: [ main ]
 
@@ -22,8 +22,8 @@ jobs:
       - name: 设置 Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: 给 gradlew 执行权限
-        run: chmod +x gradlew
+      - name: 设置 Gradle（自动生成 gradlew）
+        uses: gradle/actions/setup-gradle@v3
 
       - name: 编译 Debug APK
         run: ./gradlew assembleDebug
